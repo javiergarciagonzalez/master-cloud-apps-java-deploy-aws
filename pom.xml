@@ -74,6 +74,11 @@
            <version>1.18.2</version>
            <scope>provided</scope>
         </dependency>
+		<dependency>
+			<groupId>com.amazonaws</groupId>
+			<artifactId>aws-java-sdk-s3</artifactId>
+			<version>1.11.681</version>
+		</dependency>
 		<!-- REST ASSURED -->
 		<dependency>
 			<groupId>io.rest-assured</groupId>
