@@ -1,11 +1,13 @@
 package es.codeurjc.mca.javiergarciagonzalez.image;
 
 import java.io.File;
+
 import javax.annotation.PostConstruct;
 
 import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.AmazonS3ClientBuilder;
 import com.amazonaws.services.s3.model.AmazonS3Exception;
+import com.amazonaws.services.s3.model.CannedAccessControlList;
 import com.amazonaws.services.s3.model.PutObjectRequest;
 
 import org.springframework.beans.factory.annotation.Value;
@@ -47,6 +49,7 @@ public class S3ImageService implements ImageService {
         try {
             multiPartFile.transferTo(file);
             PutObjectRequest por = new PutObjectRequest(bucketName, fileName, file);
+            por.withCannedAcl(CannedAccessControlList.PublicRead);
             s3.putObject(por);
         } catch (Exception e) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Image could not been saved", e);
